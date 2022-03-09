@@ -37,6 +37,7 @@
 
 input {
     float: right;
+    width: 50px;
 }
 
 label {
