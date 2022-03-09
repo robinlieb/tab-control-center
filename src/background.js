@@ -13,12 +13,30 @@ function updateCount(tabId, isOnRemoved) {
 }
 
 
+function checkSettings(tabId, isOnRemoved) {
+    browser.storage.local.get("enableBadge").then(function (value) {
+        if (value.enableBadge == true) {
+            updateCount(tabId, isOnRemoved);
+        } else {
+            browser.browserAction.setBadgeText({ text: "" });
+        }
+    });
+}
+
 browser.tabs.onRemoved.addListener(
     (tabId) => {
-        updateCount(tabId, true);
+        checkSettings(tabId, true);
     });
+
 browser.tabs.onCreated.addListener(
     (tabId) => {
-        updateCount(tabId, false);
+        checkSettings(tabId, false);
     });
-updateCount();
+
+browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.type == "Settings changed") {
+        checkSettings();
+    }
+});
+
+checkSettings();
