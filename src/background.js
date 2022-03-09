@@ -1,9 +1,9 @@
-function updateCount(tabId, isOnRemoved) {
+function updateCount(tab, isOnRemoved) {
     browser.tabs.query({ currentWindow: true })
         .then((tabs) => {
             let length = tabs.length;
 
-            if (isOnRemoved && tabId && tabs.map((t) => { return t.id; }).includes(tabId)) {
+            if (isOnRemoved && tab && tabs.map((t) => { return t.id; }).includes(tab)) {
                 length--;
             }
 
@@ -13,24 +13,39 @@ function updateCount(tabId, isOnRemoved) {
 }
 
 
-function checkSettings(tabId, isOnRemoved) {
+function checkSettings(tab, isOnRemoved) {
     browser.storage.local.get("enableBadge").then(function (value) {
         if (value.enableBadge == true) {
-            updateCount(tabId, isOnRemoved);
+            updateCount(tab, isOnRemoved);
         } else {
             browser.browserAction.setBadgeText({ text: "" });
         }
     });
+
+    browser.storage.local.get("maxTabs").then(function (value) {
+        browser.tabs.query({ currentWindow: true })
+            .then((tabs) => {
+                let length = tabs.length;
+
+                if (isOnRemoved && tab && tabs.map((t) => { return t.id; }).includes(tab)) {
+                    length--;
+                }
+
+                if (length > parseInt(value.maxTabs)) {
+                    browser.tabs.remove(tab.id);
+                }
+            });
+    });
 }
 
 browser.tabs.onRemoved.addListener(
-    (tabId) => {
-        checkSettings(tabId, true);
+    (tab) => {
+        checkSettings(tab, true);
     });
 
 browser.tabs.onCreated.addListener(
-    (tabId) => {
-        checkSettings(tabId, false);
+    (tab) => {
+        checkSettings(tab, false);
     });
 
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
