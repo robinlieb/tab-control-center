@@ -6,21 +6,21 @@
     "version": "0.1.0",
     "homepage_url": "https://robinlieb.com",
     "icons": {
-        "48": "images/icon-48.png",
-        "96": "images/icon-96.png",
-        "128": "images/icon-128.png",
-        "256": "images/icon-256.png",
-        "512": "images/icon-512.png"
+        "48": "icons/icon-48.png",
+        "96": "icons/icon-96.png",
+        "128": "icons/icon-128.png",
+        "256": "icons/icon-256.png",
+        "512": "icons/icon-512.png"
     },
     "background": {
         "scripts": [
-            "background.js"
+            "background_scripts/background.js"
         ]
     },
     "content_scripts": [
         {
             "js": [
-                "content.js"
+                "content_scripts/content.js"
             ],
             "matches": [
                 "<all_urls>"
@@ -28,10 +28,10 @@
         }
     ],
     "browser_action": {
-        "default_popup": "popup.html",
+        "default_popup": "popup/popup.html",
         "default_icon": {
-            "16": "images/toolbar-icon-16.png",
-            "32": "images/toolbar-icon-32.png"
+            "16": "icons/toolbar-icon-16.png",
+            "32": "icons/toolbar-icon-32.png"
         }
     },
     "permissions": [
