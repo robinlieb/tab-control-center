@@ -1,0 +1,23 @@
+{
+  "name": "tab-control",
+  "version": "0.1.0",
+  "description": "Browser extension to control your tabs.",
+  "main": "index.js",
+  "dependencies": {
+    "webextension-polyfill": "^0.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robinlieb/tab-control.git"
+  },
+  "author": "Robin Lieb",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/robinlieb/tab-control/issues"
+  },
+  "homepage": "https://github.com/robinlieb/tab-control#readme"
+}

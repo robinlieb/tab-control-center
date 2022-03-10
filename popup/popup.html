@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="popup.css">
+    <script type="application/javascript" src="../node_modules/webextension-polyfill/dist/browser-polyfill.js"></script>
     <script type="module" src="popup.js"></script>
 </head>
 
@@ -13,11 +14,11 @@
         <ul>
             <li>
                 <label for="show_badge_checkbox_btn">Show badge</label>
-                <input type="checkbox" id="show_badge_checkbox_btn" name="badge_checkbox" checked> 
+                <input type="checkbox" id="show_badge_checkbox_btn" name="badge_checkbox" checked>
             </li>
             <li>
                 <label for="max_tabs">Maximal tabs</label>
-                <input type="number" id="max_tabs" name="max_tabs" min="1" max="50"> 
+                <input type="number" id="max_tabs" name="max_tabs" min="1" max="50">
             </li>
         </ul>
     </div>
