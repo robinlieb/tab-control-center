@@ -6,13 +6,5 @@
     "extension_description": {
         "message": "Browsererweiterung zur Steuerung Ihrer Tabs.",
         "description": "Description of what the extension does."
-    },
-    "extension_show_badge_label": {
-        "message": "Badge anzeigen",
-        "description": ""
-    },
-    "extension_max_labels_title": {
-        "message": "Maximale Tabs",
-        "description": ""
     }
 }
