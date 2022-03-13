@@ -8,7 +8,6 @@ function updateCount(tab, isOnRemoved) {
             }
 
             browser.browserAction.setBadgeText({ text: length.toString() });
-            browser.browserAction.setBadgeBackgroundColor({ 'color': 'green' });
         });
 }
 
