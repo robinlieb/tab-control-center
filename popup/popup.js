@@ -1,12 +1,12 @@
 
 // Save the selected settings
 function storeSettings() {
-    if (document.getElementById("show_badge_checkbox_btn").checked) {
+    if (document.getElementById("show_badge").checked) {
         browser.storage.local.set({ "enableBadge": true });
     } else {
         browser.storage.local.set({ "enableBadge": false });
     }
-    var maximalTabs = document.getElementById("max_tabs").value;
+    var maximalTabs = document.getElementById("maximal_tabs").value;
     browser.storage.local.set({ "maximalTabs": maximalTabs });
     browser.runtime.sendMessage({ type: "Settings changed" });
 }
@@ -14,15 +14,15 @@ function storeSettings() {
 // Restores defaults
 function restoreDefaults() {
     browser.storage.local.get("enableBadge").then(function (value) {
-        document.getElementById("show_badge_checkbox_btn").checked = value.enableBadge;
+        document.getElementById("show_badge").checked = value.enableBadge;
     });
     browser.storage.local.get("maximalTabs").then(function (value) {
-        document.getElementById("max_tabs").value = parseInt(value.maximalTabs);
+        document.getElementById("maximal_tabs").value = parseInt(value.maximalTabs);
     });
 }
 
 // Add event listener for UI settings selements
-document.getElementById('show_badge_checkbox_btn').addEventListener('change', storeSettings);
-document.getElementById('max_tabs').addEventListener('change', storeSettings);
+document.getElementById('show_badge').addEventListener('change', storeSettings);
+document.getElementById('maximal_tabs').addEventListener('change', storeSettings);
 
 restoreDefaults()
