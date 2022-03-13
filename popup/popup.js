@@ -6,8 +6,8 @@ function storeSettings() {
     } else {
         browser.storage.local.set({ "enableBadge": false });
     }
-    var maxTabs = document.getElementById("max_tabs").value;
-    browser.storage.local.set({ "maxTabs": maxTabs });
+    var maximalTabs = document.getElementById("max_tabs").value;
+    browser.storage.local.set({ "maximalTabs": maximalTabs });
     browser.runtime.sendMessage({ type: "Settings changed" });
 }
 
@@ -16,8 +16,8 @@ function restoreDefaults() {
     browser.storage.local.get("enableBadge").then(function (value) {
         document.getElementById("show_badge_checkbox_btn").checked = value.enableBadge;
     });
-    browser.storage.local.get("maxTabs").then(function (value) {
-        document.getElementById("max_tabs").value = parseInt(value.maxTabs);
+    browser.storage.local.get("maximalTabs").then(function (value) {
+        document.getElementById("max_tabs").value = parseInt(value.maximalTabs);
     });
 }
 

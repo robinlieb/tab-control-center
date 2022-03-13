@@ -21,7 +21,7 @@ function checkSettings(tab, isOnRemoved) {
         }
     });
 
-    browser.storage.local.get("maxTabs").then(function (value) {
+    browser.storage.local.get("maximalTabs").then(function (value) {
         browser.tabs.query({ currentWindow: true })
             .then((tabs) => {
                 let length = tabs.length;
@@ -30,7 +30,7 @@ function checkSettings(tab, isOnRemoved) {
                     length--;
                 }
 
-                if (length > parseInt(value.maxTabs)) {
+                if (length > parseInt(value.maximalTabs)) {
                     browser.tabs.remove(tab.id);
                 }
             });
