@@ -18,17 +18,6 @@
             "background.js"
         ]
     },
-    "content_scripts": [
-        {
-            "js": [
-                "browser-polyfill.js",
-                "content.js"
-            ],
-            "matches": [
-                "<all_urls>"
-            ]
-        }
-    ],
     "browser_action": {
         "default_popup": "popup.html",
         "default_icon": {
