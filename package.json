@@ -16,7 +16,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf ./dist && rimraf ./web-ext-artifacts",
     "build": "webpack",
-    "build:safari": "xcrun safari-web-extension-converter .",
+    "build:safari": "xcrun safari-web-extension-converter ./dist --project-location ./dist",
     "package": "web-ext build --source-dir ./dist"
   },
   "repository": {
