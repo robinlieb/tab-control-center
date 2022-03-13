@@ -4,7 +4,7 @@
         "description": "The display name for the extension."
     },
     "extension_description": {
-        "message": "Browsererweiterung zur Steuerung Ihrer Tabs.",
+        "message": "Gewinne die Kontrolle über deine Browser-Tabs zurück. Konzentriere dich nur auf die wichtigen Dinge.",
         "description": "Description of what the extension does."
     }
 }
