@@ -1,5 +1,5 @@
 {
-  "name": "tab-control",
+  "name": "tab-control-center",
   "version": "0.1.0",
   "description": "Browser extension to control your tabs.",
   "main": "index.js",

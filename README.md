@@ -1,2 +1,3 @@
-# tab-control
-Browser extension to control your tabs.
+# Tab Control Center
+
+Regain back the control of your browser tabs. Focus on the important things.
