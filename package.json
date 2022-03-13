@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robinlieb/tab-control.git"
+    "url": "git+https://github.com/robinlieb/tab-control-center.git"
   },
   "author": "Robin Lieb",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/robinlieb/tab-control/issues"
+    "url": "https://github.com/robinlieb/tab-control-center/issues"
   },
-  "homepage": "https://github.com/robinlieb/tab-control#readme"
+  "homepage": "https://github.com/robinlieb/tab-control-center#readme"
 }
