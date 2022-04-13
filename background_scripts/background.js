@@ -1,3 +1,7 @@
+var browser = require("webextension-polyfill");
+
+const action = browser.action || browser.browserAction;
+
 function updateCount(tab, isOnRemoved) {
     browser.tabs.query({ currentWindow: true })
         .then((tabs) => {
@@ -7,7 +11,7 @@ function updateCount(tab, isOnRemoved) {
                 length--;
             }
 
-            browser.browserAction.setBadgeText({ text: length.toString() });
+            action.setBadgeText({ text: length.toString() });
         });
 }
 
@@ -17,7 +21,7 @@ function checkSettings(tab, isOnRemoved) {
         if (value.enableBadge == true) {
             updateCount(tab, isOnRemoved);
         } else {
-            browser.browserAction.setBadgeText({ text: "" });
+            action.setBadgeText({ text: "" });
         }
     });
 
