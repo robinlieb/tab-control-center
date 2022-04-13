@@ -51,6 +51,21 @@ browser.tabs.onCreated.addListener(
         checkSettings(tab, false);
     });
 
+browser.windows.onRemoved.addListener(
+    (tab) => {
+        checkSettings(tab, true);
+    });
+
+browser.windows.onCreated.addListener(
+    (tab) => {
+        checkSettings(tab, false);
+    });
+
+browser.windows.onFocusChanged.addListener(
+    (tab) => {
+        checkSettings(tab, false);
+    });
+
 browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.type == "Settings changed") {
         checkSettings();
