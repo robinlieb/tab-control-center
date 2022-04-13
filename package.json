@@ -17,7 +17,7 @@
     "clean": "rimraf ./dist && rimraf ./web-ext-artifacts",
     "build:firefox": "webpack --env browser=firefox",
     "build:chrome": "webpack --env browser=chrome",
-    "build:safari": "webpack --env browser=safari && xcrun safari-web-extension-converter ./dist --project-location ./dist",
+    "build:safari": "webpack --env browser=safari && xcrun safari-web-extension-converter ./dist --project-location ./dist --bundle-identifier com.robinlieb.TabControlCenter",
     "package": "web-ext build --source-dir ./dist"
   },
   "repository": {
