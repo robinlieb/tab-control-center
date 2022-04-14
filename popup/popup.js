@@ -30,11 +30,11 @@ function restoreDefaults() {
         }
     });
     browser.storage.local.get("applySettings").then(function (value) {
-        if (!isNaN(value.maximalTabs)) {
-            document.getElementById("apply_settings_select").value = value.applySettings;
-        } else {
+        if (value.applySettings === undefined) {
             document.getElementById("apply_settings_select").value = "global"
             browser.runtime.sendMessage({ type: "Settings changed" });
+        } else {
+            document.getElementById("apply_settings_select").value = value.applySettings;
         }
     });
 }
