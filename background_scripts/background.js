@@ -15,6 +15,21 @@ function updateCount(tab, isOnRemoved, queryObj) {
         });
 }
 
+function removeTab(latest) {
+    browser.storage.local.get("removeOption").then(function (value) {
+        if (value.removeOption === "left") {
+            browser.tabs.query({ currentWindow: true })
+                .then((tabs) => {
+                    const tab = tabs.find(tab => tab.index === 0);
+                    browser.tabs.remove(tab.id);
+                });
+        } else {
+            // default to newest tab
+            browser.tabs.remove(latest.id);
+        }
+    });
+}
+
 
 function checkSettings(tab, isOnRemoved) {
     browser.storage.local.get("applySettings").then(function (value) {
@@ -41,7 +56,7 @@ function checkSettings(tab, isOnRemoved) {
                     }
 
                     if (length > parseInt(value.maximalTabs)) {
-                        browser.tabs.remove(tab.id);
+                        removeTab(tab);
                     }
                 });
         });
