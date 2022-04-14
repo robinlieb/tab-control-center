@@ -16,13 +16,26 @@ function storeSettings() {
 // Restores defaults
 function restoreDefaults() {
     browser.storage.local.get("enableBadge").then(function (value) {
-        document.getElementById("show_badge").checked = value.enableBadge;
+        if (!isNaN(value.enableBadge)) {
+            document.getElementById("show_badge").checked = value.enableBadge;
+        } else {
+            browser.storage.local.set({ "enableBadge": true });
+            document.getElementById("show_badge").checked = true
+            browser.runtime.sendMessage({ type: "Settings changed" });
+        }
     });
     browser.storage.local.get("maximalTabs").then(function (value) {
-        document.getElementById("maximal_tabs").value = parseInt(value.maximalTabs);
+        if (!isNaN(value.maximalTabs)) {
+            document.getElementById("maximal_tabs").value = parseInt(value.maximalTabs);
+        }
     });
     browser.storage.local.get("applySettings").then(function (value) {
-        document.getElementById("apply-settings-select").value = value.applySettings;
+        if (!isNaN(value.maximalTabs)) {
+            document.getElementById("apply-settings-select").value = value.applySettings;
+        } else {
+            document.getElementById("apply-settings-select").value = "global"
+            browser.runtime.sendMessage({ type: "Settings changed" });
+        }
     });
 }
 
