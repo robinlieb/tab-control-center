@@ -8,6 +8,8 @@ function storeSettings() {
     }
     var maximalTabs = document.getElementById("maximal_tabs").value;
     browser.storage.local.set({ "maximalTabs": maximalTabs });
+    var applySettings = document.getElementById("apply-settings-select").value;
+    browser.storage.local.set({ "applySettings": applySettings });
     browser.runtime.sendMessage({ type: "Settings changed" });
 }
 
@@ -19,10 +21,14 @@ function restoreDefaults() {
     browser.storage.local.get("maximalTabs").then(function (value) {
         document.getElementById("maximal_tabs").value = parseInt(value.maximalTabs);
     });
+    browser.storage.local.get("applySettings").then(function (value) {
+        document.getElementById("apply-settings-select").value = value.applySettings;
+    });
 }
 
 // Add event listener for UI settings selements
 document.getElementById('show_badge').addEventListener('change', storeSettings);
 document.getElementById('maximal_tabs').addEventListener('change', storeSettings);
+document.getElementById('apply-settings-select').addEventListener('change', storeSettings);
 
 restoreDefaults()

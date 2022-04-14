@@ -2,8 +2,8 @@ var browser = require("webextension-polyfill");
 
 const action = browser.action || browser.browserAction;
 
-function updateCount(tab, isOnRemoved) {
-    browser.tabs.query({ currentWindow: true })
+function updateCount(tab, isOnRemoved, queryObj) {
+    browser.tabs.query(queryObj)
         .then((tabs) => {
             let length = tabs.length;
 
@@ -17,27 +17,34 @@ function updateCount(tab, isOnRemoved) {
 
 
 function checkSettings(tab, isOnRemoved) {
-    browser.storage.local.get("enableBadge").then(function (value) {
-        if (value.enableBadge == true) {
-            updateCount(tab, isOnRemoved);
-        } else {
-            action.setBadgeText({ text: "" });
+    browser.storage.local.get("applySettings").then(function (value) {
+        var queryObj = {};
+        if (value.applySettings === "window") {
+            queryObj = { currentWindow: true };
         }
-    });
 
-    browser.storage.local.get("maximalTabs").then(function (value) {
-        browser.tabs.query({ currentWindow: true })
-            .then((tabs) => {
-                let length = tabs.length;
+        browser.storage.local.get("enableBadge").then(function (value) {
+            if (value.enableBadge == true) {
+                updateCount(tab, isOnRemoved, queryObj);
+            } else {
+                action.setBadgeText({ text: "" });
+            }
+        });
 
-                if (isOnRemoved && tab && tabs.map((t) => { return t.id; }).includes(tab)) {
-                    length--;
-                }
+        browser.storage.local.get("maximalTabs").then(function (value) {
+            browser.tabs.query(queryObj)
+                .then((tabs) => {
+                    let length = tabs.length;
 
-                if (length > parseInt(value.maximalTabs)) {
-                    browser.tabs.remove(tab.id);
-                }
-            });
+                    if (isOnRemoved && tab && tabs.map((t) => { return t.id; }).includes(tab)) {
+                        length--;
+                    }
+
+                    if (length > parseInt(value.maximalTabs)) {
+                        browser.tabs.remove(tab.id);
+                    }
+                });
+        });
     });
 }
 
