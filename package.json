@@ -4,7 +4,7 @@
   "description": "Browser extension to control your tabs.",
   "main": "index.js",
   "devDependencies": {
-    "copy-webpack-plugin": "^10.2.4",
+    "copy-webpack-plugin": "^12.0.2",
     "eslint": "^8.11.0",
     "rimraf": "^3.0.2",
     "web-ext": "^7.11.0",
